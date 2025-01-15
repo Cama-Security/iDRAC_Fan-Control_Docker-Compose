@@ -15,4 +15,4 @@ services:
       - IDRAC_USERNAME
       - IDRAC_PASSWORD
     devices:
-      - ${LOCAL_IPMI+"/dev/ipmi0:/dev/ipmi0:rw"}
+      - ${LOCAL_IPMI+/dev/ipmi0:/dev/ipmi0:rw}
