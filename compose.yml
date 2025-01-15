@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  Dell_iDRAC_fan_controller:
+    image: tigerblue77/dell_idrac_fan_controller:latest
+    container_name: Dell_iDRAC_fan_controller
+    restart: unless-stopped
+    environment:
+      - IDRAC_HOST=${IDRAC_HOST:?error}
+      - FAN_SPEED
+      - CPU_TEMPERATURE_THRESHOLD
+      - CHECK_INTERVAL
+      - KEEP_THIRD_PARTY_PCIE_CARD_COOLING_RESPONSE_STATE_ON_EXIT
+      - ${DISABLE_THIRD_PARTY_PCIE_CARD_DELL_DEFAULT_COOLING_RESPONSE:-"DISABLE_THIRD_PARTY_PCIE_CARD_DELL_DEFAULT_COOLING_RESPONSE=true"}
+      ${LOCAL_IPMI-"- IDRAC_USERNAME=${IDRAC_USERNAME:-root}"}
+      ${LOCAL_IPMI-"- IDRAC_PASSWORD=${IDRAC_PASSWORD:?error}"}
+    ${LOCAL_IPMI+"devices:"}
+      ${LOCAL_IPMI+"- /dev/ipmi0:/dev/ipmi0:rw"}
