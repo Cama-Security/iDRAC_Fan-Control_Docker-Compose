@@ -14,5 +14,5 @@ services:
       - ${DISABLE_THIRD_PARTY_PCIE_CARD_DELL_DEFAULT_COOLING_RESPONSE:-"DISABLE_THIRD_PARTY_PCIE_CARD_DELL_DEFAULT_COOLING_RESPONSE=true"}
       - ${LOCAL_IPMI-"IDRAC_USERNAME=${IDRAC_USERNAME:-root}"}
       - ${LOCAL_IPMI-"IDRAC_PASSWORD=${IDRAC_PASSWORD:?error}"}
-    ${LOCAL_IPMI+"devices:"}
-      ${LOCAL_IPMI+"- /dev/ipmi0:/dev/ipmi0:rw"}
+    devices:
+      - ${LOCAL_IPMI+"/dev/ipmi0:/dev/ipmi0:rw"}
